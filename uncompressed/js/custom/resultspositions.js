@@ -93,11 +93,6 @@ var DrawLine = function drawLine(options){
      * SCALES
      *
      * Set the x & y scales.
-     * If we want a variable
-     * radius for our circles,
-     * set the r scale.
-     * If we want have colours,
-     * set the colour scale.
      * ------------------------
      */
     var xScale = d3.scale.linear().range([0, width]),
@@ -115,7 +110,8 @@ var DrawLine = function drawLine(options){
      */
     var scatterSvg = settings.wrapper.append('svg')
         .attr('width',wrapperWidth)
-        .attr('height',wrapperHeight);
+        .attr('height',wrapperHeight)
+        .classed('chartSvg',true);
 
     var svgInner = scatterSvg.append('g')
         .attr('transform','translate(' + settings.margin.left + ', ' + settings.margin.top + ')')
@@ -123,9 +119,36 @@ var DrawLine = function drawLine(options){
         .attr('height',height)
         .classed('chartWrapper',true);
 
+    /**
+     * Background
+     */
+    var bgWrap = svgInner.append('g')
+        .classed('background',true);
+    
+    var barNumber = 6;
+    var barHeight = height / barNumber;
+    
+    for (i = 0; i < barNumber; i++) {
+        bgWrap.append('rect')
+            .attr('width',width)
+            .attr('height',barHeight)
+            .attr('fill','black')
+            .attr('opacity',function(){
+                if ((i - 1) % 2){
+                    return .05;
+                } else {
+                    return 0;
+                }
+            })
+            .attr('transform','translate(0,' + (barHeight * i) + ')');
+    }
+
     var paths = [];
+    var pathsWrapper = svgInner.append('g')
+        .classed('pathsWrapper',true);
+
     for (i = 0; i < settings.yColumn.length; i++) {
-        paths[i] = svgInner.append('path');
+        paths[i] = pathsWrapper.append('path');
     }
     // console.log(paths);
     // return;
@@ -150,29 +173,37 @@ var DrawLine = function drawLine(options){
     var yAxisG = axesGroup.append('g')
         .classed('axis yAxis',true);
     
-    var xAxis = d3.svg.axis().scale(xScale).orient('bottom')
-        // .ticks(5)
-        .tickFormat(function(d){return d3.time.format('%Y-%m-%d')(new Date((d * 1000)));});
-        // .tickFormat(d3.time.format('%Y%m%d'));
-    var yAxis = d3.svg.axis().scale(yScale).orient('left');
+    var xAxis = d3.svg.axis()
+        .scale(xScale)
+        .orient('bottom')
+        .tickFormat(function(d){return d3.time.format('%Y')(new Date((d * 1000)));})
+        // .tickValues([2000,2002,2004,2006,2006,2010,2012,2014])
+        // .ticks(d3.time.year, 1)
+        ;
+    var yAxis = d3.svg.axis()
+        .scale(yScale)
+        .orient('left')
+        .tickValues([1,2,3,4,5,6])
+        .tickFormat(d3.format())
+        ;
 
     /**
      * Axes Labels
      */
 
     var xLabelOffset = 35;
-    var xLabelText = settings.xColumn;
-    var yLabelOffset = -40;
-    var yLabelText = settings.yColumn;
+    var xLabelText = 'Year';
+    var yLabelOffset = -30;
+    var yLabelText = 'Finishing Position';
 
-    var xAxisLabel = xAxisG.append('text')
-        .classed('axisLabel',true)
-        .attr('transform','translate(' + (width / 2) + ',' + xLabelOffset + ')')    
-        .text(xLabelText);
+    // var xAxisLabel = xAxisG.append('text')
+    //     .classed('axisLabel',true)
+    //     .attr('transform','translate(' + (width / 2) + ',' + xLabelOffset + ')')    
+    //     .text(xLabelText);
 
     var yAxisLabel = yAxisG.append('text')
         .classed('axisLabel',true)
-        .attr('transform','translate(' + yLabelOffset + ',' + (height / 2) + ') rotate(-90)')    
+        .attr('transform','translate(' + yLabelOffset + ',' + (height / 2) + ') rotate(-90)')
         .text(yLabelText);
 
     /**
@@ -236,14 +267,13 @@ var DrawLine = function drawLine(options){
         var yScaleExtent = d3.extent(data, function (d){ return d[settings.yColumn2]; });
         
         xScale.domain([xMin,xMax]);
-        yScale.domain([yMin,yMax]);
+        yScale.domain([7,1]);
 
         /**
          * AXES
          */
         xAxisG.call(xAxis);
         yAxisG.call(yAxis);
-
     
         /**
          * SETUP LINE
@@ -255,12 +285,12 @@ var DrawLine = function drawLine(options){
             lines[i] = d3.svg.line()
                 .x(function(d){ return xScale(d[settings.xColumn[0]]); })
                 .y(function(d){ return yScale(d[settings.yColumn[i]]); })
-                .interpolate('basis');
+                .interpolate('monotone');
 
             paths[i]
                 .attr('d',lines[i](data))
                 .attr('fill','none')
-                .classed('y1',true)
+                .classed('chartline line' + settings.yColumn[i], true)
                 .attr('stroke-width','1px');
         }
 
@@ -282,3 +312,12 @@ var DrawLine = function drawLine(options){
 
 
 }
+
+var testScatter = DrawLine({
+    dataSrc  : '/data/resultspositions.csv',
+    wrapper  : d3.select('#resultsLine'),
+    margin   : { top: 20, right: 20, bottom: 50, left: 50 },
+    xColumn  : ['year'],
+    yColumn  : ['england','scotland','ireland','wales','france','italy'],
+    hasTimeX : true
+});

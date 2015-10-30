@@ -1,0 +1,25 @@
+html{
+    // background:#eee;
+    font-family:$text;
+}
+body{
+    padding:2em;
+    // width:80%;
+    margin:0 auto;
+}
+h1,h2{
+    display:inline-block;
+    font-family:$text;
+    text-transform:uppercase;
+    letter-spacing:.1em;
+    font-weight:$bold;
+    border-bottom:.2rem solid $black;
+}
+h1{
+    font-size:1.2em;
+}
+
+
+strong{
+    font-weight:bold;
+}

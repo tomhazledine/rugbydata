@@ -1,0 +1,36 @@
+#resultsLine{
+
+    height:20em;
+    padding-bottom:0;
+
+    .chartWrapper{
+        overflow:hidden;
+    }
+
+    .lineengland{ stroke:$england; }
+    .linescotland{ stroke:$scotland; }
+    .lineireland{ stroke:$ireland; }
+    .linewales{ stroke:$wales; }
+    .linefrance{ stroke:$france; }
+    .lineitaly{ stroke:$italy; }
+
+    .chartline{
+        stroke-width:.1em;
+        opacity:.4;
+        position:relative;
+        z-index:2;
+        cursor:pointer;
+        transition:opacity;
+        transition-duration:.2s;
+        &:hover{
+            opacity:1;
+            z-index:3;
+            stroke-width:.2em;
+        }
+    }
+
+    .xAxis .tick{
+        // transform:rotate(-90deg);
+    }
+
+}
