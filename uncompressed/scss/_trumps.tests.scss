@@ -1,0 +1,34 @@
+html{
+	background:#eee;
+    font-family:$text;
+}
+body{
+	padding:2em;
+	// width:80%;
+	margin:0 auto;
+}
+h1{
+	font-size:2em;
+	margin-bottom:1em;
+	font-family:$display;
+    // color:blue;
+}
+
+h2{
+    display:inline-block;
+    font-size:1em;
+    margin-bottom:1em;
+    font-family:$text;
+    text-transform:uppercase;
+    letter-spacing:.1em;
+    font-weight:$bold;
+    border-bottom:.2em solid $black;
+}
+
+strong{
+    font-weight:bold;
+}
+
+#basicHeatMap{
+    background:$black;
+}
