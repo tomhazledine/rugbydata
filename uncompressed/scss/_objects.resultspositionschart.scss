@@ -1,6 +1,6 @@
 #resultsLine{
 
-    height:20em;
+    height:12em;
     padding-bottom:0;
 
     .chartWrapper{
@@ -14,23 +14,55 @@
     .linefrance{ stroke:$france; }
     .lineitaly{ stroke:$italy; }
 
+    .circleengland{ fill:$england; }
+    .circlescotland{ fill:$scotland; }
+    .circleireland{ fill:$ireland; }
+    .circlewales{ fill:$wales; }
+    .circlefrance{ fill:$france; }
+    .circleitaly{ fill:$italy; }
+
     .chartline{
         stroke-width:.1em;
-        opacity:.4;
+        box-shadow:$black 0 0 0 1em;
+        opacity:.1;
         position:relative;
         z-index:2;
         cursor:pointer;
         transition:opacity;
         transition-duration:.2s;
-        &:hover{
-            opacity:1;
-            z-index:3;
-            stroke-width:.2em;
-        }
+        // &:hover{
+        //     opacity:1;
+        //     z-index:3;
+        //     stroke-width:.2em;
+        // }
+    }
+
+    .chartcircle{
+        // opacity:.4;
+        box-shadow:$black 0 0 0 1em;
     }
 
     .xAxis .tick{
         // transform:rotate(-90deg);
     }
 
+    .entry.active .chartline{
+        opacity:1;
+        stroke-width:.2em;
+    }
+
+}
+
+.tooltip{
+    position:relative;
+    // top:0;
+    // left:0;
+    // display:inline-block;
+    // float:left;
+    // clear:both;
+    padding:.5em 1em;
+    line-height:1;
+    background:$grey;
+    z-index:4;
+    margin-top:1em;
 }

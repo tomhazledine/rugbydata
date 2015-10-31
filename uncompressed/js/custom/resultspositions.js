@@ -143,19 +143,6 @@ var DrawLine = function drawLine(options){
             .attr('transform','translate(0,' + (barHeight * i) + ')');
     }
 
-    var paths = [];
-    var pathsWrapper = svgInner.append('g')
-        .classed('pathsWrapper',true);
-
-    for (i = 0; i < settings.yColumn.length; i++) {
-        paths[i] = pathsWrapper.append('path');
-    }
-    // console.log(paths);
-    // return;
-
-    // var path = svgInner.append('path');
-    // var path2 = svgInner.append('path');
-
     /**
      * ---------------
      * AXES
@@ -176,16 +163,12 @@ var DrawLine = function drawLine(options){
     var xAxis = d3.svg.axis()
         .scale(xScale)
         .orient('bottom')
-        .tickFormat(function(d){return d3.time.format('%Y')(new Date((d * 1000)));})
-        // .tickValues([2000,2002,2004,2006,2006,2010,2012,2014])
-        // .ticks(d3.time.year, 1)
-        ;
+        .tickFormat(function(d){return d3.time.format('%Y')(new Date((d * 1000)));});
     var yAxis = d3.svg.axis()
         .scale(yScale)
         .orient('left')
         .tickValues([1,2,3,4,5,6])
-        .tickFormat(d3.format())
-        ;
+        .tickFormat(d3.format());
 
     /**
      * Axes Labels
@@ -196,15 +179,15 @@ var DrawLine = function drawLine(options){
     var yLabelOffset = -30;
     var yLabelText = 'Finishing Position';
 
-    // var xAxisLabel = xAxisG.append('text')
-    //     .classed('axisLabel',true)
-    //     .attr('transform','translate(' + (width / 2) + ',' + xLabelOffset + ')')    
-    //     .text(xLabelText);
-
     var yAxisLabel = yAxisG.append('text')
         .classed('axisLabel',true)
         .attr('transform','translate(' + yLabelOffset + ',' + (height / 2) + ') rotate(-90)')
         .text(yLabelText);
+
+    /**
+     * Tooltip
+     */
+    var tooltip = d3.select('.tooltip');
 
     /**
      * -------------------------
@@ -216,9 +199,6 @@ var DrawLine = function drawLine(options){
      * -------------------------
      */
     function _renderChart(data){
-
-        // console.log(data);
-        // return;
         
         /**
          * -----------------
@@ -274,26 +254,71 @@ var DrawLine = function drawLine(options){
          */
         xAxisG.call(xAxis);
         yAxisG.call(yAxis);
-    
+
         /**
-         * SETUP LINE
+         * CREATE SHAPES
          */
-        
+        var circles = [];
+        var paths = [];
         var lines = [];
+        var entryWrapper = [];
 
         for (i = 0; i < settings.yColumn.length; i++) {
+
+            entryWrapper[i] = svgInner.append('g')
+                .classed('entry entry' + i + ' entry' + settings.yColumn[i],true);
+
+            paths[i] = entryWrapper[i].append('path');
+
+            /**
+             * CIRCLES
+             */
+            circles[i] = entryWrapper[i].selectAll('circle').data(data);
+
+            circles[i].enter().append('circle');
+
+            circles[i]
+                .attr('cx',function (d){ return xScale(d[settings.xColumn[0]]); })
+                .attr('cy',function (d){ return yScale(d[settings.yColumn[i]]); })
+                .attr('r',3)
+                .classed('chartcircle circle' + settings.yColumn[i], true);
+
+            circles[i].exit().remove();
+    
+            /**
+             * LINES
+             */
             lines[i] = d3.svg.line()
                 .x(function(d){ return xScale(d[settings.xColumn[0]]); })
                 .y(function(d){ return yScale(d[settings.yColumn[i]]); })
-                .interpolate('monotone');
+                .interpolate('linear');
 
             paths[i]
                 .attr('d',lines[i](data))
                 .attr('fill','none')
+                .attr('data-nation',settings.yColumn[i])
                 .classed('chartline line' + settings.yColumn[i], true)
                 .attr('stroke-width','1px');
-        }
 
+            /**
+             * TRANSITIONS
+             */
+            paths[i].on('mouseover',function(){
+                var nation = $(this).attr('data-nation');
+                var targetClass = '.entry' + nation;
+                var target = d3.select(targetClass);
+                tooltip.text(nation);
+                target.classed('active',true);
+            });
+
+            paths[i].on('mouseout',function(){
+                var nation = $(this).attr('data-nation');
+                var targetClass = '.entry' + nation;
+                var target = d3.select(targetClass);
+                tooltip.text('nothing selected');
+                target.classed('active',false);
+            });
+        }
 
     }
 
@@ -316,7 +341,7 @@ var DrawLine = function drawLine(options){
 var testScatter = DrawLine({
     dataSrc  : '/data/resultspositions.csv',
     wrapper  : d3.select('#resultsLine'),
-    margin   : { top: 20, right: 20, bottom: 50, left: 50 },
+    margin   : { top: 20, right: 20, bottom: 30, left: 50 },
     xColumn  : ['year'],
     yColumn  : ['england','scotland','ireland','wales','france','italy'],
     hasTimeX : true
