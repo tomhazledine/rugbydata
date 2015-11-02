@@ -304,20 +304,28 @@ var DrawLine = function drawLine(options){
              * TRANSITIONS
              */
             paths[i].on('mouseover',function(){
-                var nation = $(this).attr('data-nation');
+                activeOn($(this));
+            });
+
+            paths[i].on('mouseout',function(){
+                activeOff($(this));
+            });
+
+            function activeOn(subject){
+                var nation = subject.attr('data-nation');
                 var targetClass = '.entry' + nation;
                 var target = d3.select(targetClass);
                 tooltip.text(nation);
                 target.classed('active',true);
-            });
+            }
 
-            paths[i].on('mouseout',function(){
-                var nation = $(this).attr('data-nation');
+            function activeOff(subject){
+                var nation = subject.attr('data-nation');
                 var targetClass = '.entry' + nation;
                 var target = d3.select(targetClass);
                 tooltip.text('nothing selected');
                 target.classed('active',false);
-            });
+            }
         }
 
     }

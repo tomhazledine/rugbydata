@@ -38,17 +38,24 @@
     }
 
     .chartcircle{
-        // opacity:.4;
-        box-shadow:$black 0 0 0 1em;
+        opacity:.4;
+        // box-shadow:$black 0 0 0 1em;
     }
 
     .xAxis .tick{
         // transform:rotate(-90deg);
     }
 
-    .entry.active .chartline{
-        opacity:1;
-        stroke-width:.2em;
+    .entry.active{
+        .chartline{
+            opacity:1;
+            stroke-width:.2em;
+        }
+        .chartcircle{
+            opacity:1;
+            stroke-width:2px;
+            stroke-color:$black;
+        }
     }
 
 }
