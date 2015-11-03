@@ -36,7 +36,7 @@ var DrawLine = function drawLine(options){
         yColumn      : ['yColumn'],
         hasTimeX     : false,
         hasTimeY     : false,
-        circleRadius : 5
+        circleRadius : 4
     };
 
     /**
@@ -291,6 +291,7 @@ var DrawLine = function drawLine(options){
                         return 0;
                     }
                 })
+                .attr('data-nation',settings.yColumn[i])
                 .classed('chartcircle circle' + settings.yColumn[i], true);
 
             circles[i].exit().remove();
@@ -302,7 +303,7 @@ var DrawLine = function drawLine(options){
                 .defined(function(d) { return d[settings.yColumn[i]] != null; })
                 .x(function(d){ return xScale(d[settings.xColumn[0]]); })
                 .y(function(d){ return yScale(d[settings.yColumn[i]]); })
-                .interpolate('monotone');
+                .interpolate('bundle');// monotone | basis | linear | cardinal | bundle
 
             paths[i]
                 .attr('d',lines[i](data))
@@ -319,6 +320,14 @@ var DrawLine = function drawLine(options){
             });
 
             paths[i].on('mouseout',function(){
+                activeOff($(this));
+            });
+
+            circles[i].on('mouseover',function(){
+                activeOn($(this));
+            });
+
+            circles[i].on('mouseout',function(){
                 activeOff($(this));
             });
 

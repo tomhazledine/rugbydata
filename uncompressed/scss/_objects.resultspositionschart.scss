@@ -6,29 +6,31 @@
     .chartWrapper{
         overflow:hidden;
     }
+    // .active{
+        .lineengland{ stroke:$england; }
+        .linescotland{ stroke:$scotland; }
+        .lineireland{ stroke:$ireland; }
+        .linewales{ stroke:$wales; }
+        .linefrance{ stroke:$france; }
+        .lineitaly{ stroke:$italy; }
 
-    .lineengland{ stroke:$england; }
-    .linescotland{ stroke:$scotland; }
-    .lineireland{ stroke:$ireland; }
-    .linewales{ stroke:$wales; }
-    .linefrance{ stroke:$france; }
-    .lineitaly{ stroke:$italy; }
-
-    .circleengland{ fill:$england; }
-    .circlescotland{ fill:$scotland; }
-    .circleireland{ fill:$ireland; }
-    .circlewales{ fill:$wales; }
-    .circlefrance{ fill:$france; }
-    .circleitaly{ fill:$italy; }
+        .circleengland{ fill:$england; }
+        .circlescotland{ fill:$scotland; }
+        .circleireland{ fill:$ireland; }
+        .circlewales{ fill:$wales; }
+        .circlefrance{ fill:$france; }
+        .circleitaly{ fill:$italy; }
+    // }
 
     .chartline{
         stroke-width:.1rem;
+        // stroke:$grey;
         box-shadow:$black 0 0 0 1em;
         // opacity:.1;
         position:relative;
         z-index:2;
         cursor:pointer;
-        transition:opacity;
+        transition:opacity,stroke;
         transition-duration:.2s;
         // &:hover{
         //     opacity:1;
@@ -39,6 +41,7 @@
 
     .chartcircle{
         opacity:0;
+        cursor:pointer;
         // box-shadow:$black 0 0 0 1em;
     }
 
