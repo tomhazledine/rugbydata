@@ -1,6 +1,6 @@
 #resultsLine{
 
-    height:12em;
+    height:14em;
     padding-bottom:0;
 
     .chartWrapper{
@@ -22,7 +22,7 @@
     .circleitaly{ fill:$italy; }
 
     .chartline{
-        stroke-width:.1em;
+        stroke-width:.1rem;
         box-shadow:$black 0 0 0 1em;
         // opacity:.1;
         position:relative;
@@ -49,7 +49,7 @@
     .entry.active{
         .chartline{
             opacity:1;
-            stroke-width:.2em;
+            // stroke-width:.2em;
         }
         .chartcircle{
             opacity:1;

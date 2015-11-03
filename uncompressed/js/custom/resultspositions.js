@@ -277,8 +277,20 @@ var DrawLine = function drawLine(options){
 
             circles[i]
                 .attr('cx',function (d){ return xScale(d[settings.xColumn[0]]); })
-                .attr('cy',function (d){ return yScale(d[settings.yColumn[i]]); })
-                .attr('r',settings.circleRadius)
+                .attr('cy',function (d){ 
+                    if (d[settings.yColumn[i]] != null || !notNaN(d[settings.yColumn[i]])) {
+                        return yScale(d[settings.yColumn[i]]);
+                    } else {
+                        return 7;
+                    }
+                })
+                .attr('r',function(d){
+                    if (d[settings.yColumn[i]] != null) {
+                        return settings.circleRadius;
+                    } else {
+                        return 0;
+                    }
+                })
                 .classed('chartcircle circle' + settings.yColumn[i], true);
 
             circles[i].exit().remove();
@@ -287,9 +299,10 @@ var DrawLine = function drawLine(options){
              * LINES
              */
             lines[i] = d3.svg.line()
+                .defined(function(d) { return d[settings.yColumn[i]] != null; })
                 .x(function(d){ return xScale(d[settings.xColumn[0]]); })
                 .y(function(d){ return yScale(d[settings.yColumn[i]]); })
-                .interpolate('linear');
+                .interpolate('monotone');
 
             paths[i]
                 .attr('d',lines[i](data))
