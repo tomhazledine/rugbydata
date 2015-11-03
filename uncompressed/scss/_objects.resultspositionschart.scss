@@ -24,7 +24,7 @@
     .chartline{
         stroke-width:.1em;
         box-shadow:$black 0 0 0 1em;
-        opacity:.1;
+        // opacity:.1;
         position:relative;
         z-index:2;
         cursor:pointer;
@@ -38,7 +38,7 @@
     }
 
     .chartcircle{
-        opacity:.4;
+        opacity:0;
         // box-shadow:$black 0 0 0 1em;
     }
 
@@ -62,14 +62,15 @@
 
 .tooltip{
     position:relative;
-    // top:0;
-    // left:0;
-    // display:inline-block;
-    // float:left;
-    // clear:both;
     padding:.5em 1em;
     line-height:1;
-    background:$grey;
     z-index:4;
     margin-top:1em;
+}
+
+.bgBar{
+    fill:#eee;
+    &.odd{
+        fill:#ddd;
+    }
 }

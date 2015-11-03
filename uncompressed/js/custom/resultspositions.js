@@ -35,7 +35,8 @@ var DrawLine = function drawLine(options){
         xColumn      : ['xColumn'],
         yColumn      : ['yColumn'],
         hasTimeX     : false,
-        hasTimeY     : false
+        hasTimeY     : false,
+        circleRadius : 5
     };
 
     /**
@@ -129,17 +130,14 @@ var DrawLine = function drawLine(options){
     var barHeight = height / barNumber;
     
     for (i = 0; i < barNumber; i++) {
+        var bgClass = 'bgBar';
+        if ((i - 1) % 2){
+            bgClass = bgClass + ' odd';
+        }
         bgWrap.append('rect')
             .attr('width',width)
             .attr('height',barHeight)
-            .attr('fill','black')
-            .attr('opacity',function(){
-                if ((i - 1) % 2){
-                    return .05;
-                } else {
-                    return 0;
-                }
-            })
+            .classed(bgClass, true)
             .attr('transform','translate(0,' + (barHeight * i) + ')');
     }
 
@@ -280,7 +278,7 @@ var DrawLine = function drawLine(options){
             circles[i]
                 .attr('cx',function (d){ return xScale(d[settings.xColumn[0]]); })
                 .attr('cy',function (d){ return yScale(d[settings.yColumn[i]]); })
-                .attr('r',3)
+                .attr('r',settings.circleRadius)
                 .classed('chartcircle circle' + settings.yColumn[i], true);
 
             circles[i].exit().remove();
