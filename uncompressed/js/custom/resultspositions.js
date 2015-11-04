@@ -303,7 +303,7 @@ var DrawLine = function drawLine(options){
                 .defined(function(d) { return d[settings.yColumn[i]] != null; })
                 .x(function(d){ return xScale(d[settings.xColumn[0]]); })
                 .y(function(d){ return yScale(d[settings.yColumn[i]]); })
-                .interpolate('bundle');// monotone | basis | linear | cardinal | bundle
+                .interpolate('monotone');// monotone | basis | linear | cardinal | bundle
 
             paths[i]
                 .attr('d',lines[i](data))
