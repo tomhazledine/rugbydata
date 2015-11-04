@@ -20,12 +20,48 @@
             <div id="resultsLine" class="chartContainer"></div>
 
             <div class="selectors">
-                <button class="selectorButton" data-nation="france">France</button>
-                <button class="selectorButton" data-nation="england">England</button>
-                <button class="selectorButton" data-nation="scotland">Scotland</button>
-                <button class="selectorButton" data-nation="wales">Wales</button>
-                <button class="selectorButton" data-nation="ireland">Ireland</button>
-                <button class="selectorButton" data-nation="italy">Italy</button>
+                <div class="checkWrapper">
+                    <div class="check">  
+                        <input type="checkbox" class="nationSelector" id="france" name="check"  />
+                        <label for="france" class="symLabel"></label>
+                    </div>
+                    <label for="france" class="visibleLabel">France</label>
+                </div>
+                <div class="checkWrapper">
+                    <div class="check">  
+                        <input type="checkbox" class="nationSelector" id="england" name="check" checked />
+                        <label for="england" class="symLabel"></label>
+                    </div>
+                    <label for="england" class="visibleLabel">England</label>
+                </div>
+                <div class="checkWrapper">
+                    <div class="check">  
+                        <input type="checkbox" class="nationSelector" id="ireland" name="check"  />
+                        <label for="ireland" class="symLabel"></label>
+                    </div>
+                    <label for="ireland" class="visibleLabel">Ireland</label>
+                </div>
+                <div class="checkWrapper">
+                    <div class="check">  
+                        <input type="checkbox" class="nationSelector" id="scotland" name="check"  />
+                        <label for="scotland" class="symLabel"></label>
+                    </div>
+                    <label for="scotland" class="visibleLabel">Scotland</label>
+                </div>
+                <div class="checkWrapper">
+                    <div class="check">  
+                        <input type="checkbox" class="nationSelector" id="wales" name="check"  />
+                        <label for="wales" class="symLabel"></label>
+                    </div>
+                    <label for="wales" class="visibleLabel">Wales</label>
+                </div>
+                <div class="checkWrapper">
+                    <div class="check">  
+                        <input type="checkbox" class="nationSelector" id="italy" name="check"  />
+                        <label for="italy" class="symLabel"></label>
+                    </div>
+                    <label for="italy" class="visibleLabel">Italy</label>
+                </div>
             </div>
             
             <div class="tooltip">Tooltip</div>
