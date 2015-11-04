@@ -22,11 +22,13 @@
 // 04. BASE
 @import "base.general";
 @import "base.theme";
+@import "base.checkbox";
 
 // 05. OBJECTS
 @import "objects.genericchart";
 @import "objects.line";
 @import "objects.resultspositionschart";
+@import "objects.selectors";
 
 // 06. COMPONENTS
 
