@@ -4,21 +4,18 @@ selectors.on('change',function(){
 	
 	var isChecked = this.checked;
 	var nation = $(this).attr('name');
-	console.log('the ' + nation + ' checkbox status is ' + isChecked);
-
-
-
-	// var checkboxes = searchFilterBox.find('.filterCheckbox');
-	// 		var filters = [];
-	// 		for (var i = 0; i < checkboxes.length; i++) {
-	// 			var checkId = checkboxes[i].id;
-	// 			var checkStatus = checkboxes[i].checked;
-	// 			if (checkStatus) {
-	// 				filters.push(checkId);
-	// 			}
-	// 		}
-
-	// 		filterResultsByType(filters);
-
-	// 		var sleepValue = sleepSelect.val();
+	// console.log('the ' + nation + ' checkbox status is ' + isChecked);
+	
+	setChartVisibleState(nation,isChecked);
 });
+
+function setChartVisibleState(dataSelector,status){
+	var targetClass = '.entry' + dataSelector;
+	var target = d3.select(targetClass);
+	console.log(target);
+	if (status) {
+		target.classed('active',true);
+	} else {
+		target.classed('active',false);
+	}
+}

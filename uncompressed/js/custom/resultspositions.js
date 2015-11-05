@@ -36,7 +36,7 @@ var DrawLine = function drawLine(options){
         yColumn      : ['yColumn'],
         hasTimeX     : false,
         hasTimeY     : false,
-        circleRadius : 4
+        circleRadius : 3
     };
 
     /**
@@ -315,37 +315,37 @@ var DrawLine = function drawLine(options){
             /**
              * TRANSITIONS
              */
-            paths[i].on('mouseover',function(){
-                activeOn($(this));
-            });
+            // paths[i].on('mouseover',function(){
+            //     activeOn($(this));
+            // });
 
-            paths[i].on('mouseout',function(){
-                activeOff($(this));
-            });
+            // paths[i].on('mouseout',function(){
+            //     activeOff($(this));
+            // });
 
-            circles[i].on('mouseover',function(){
-                activeOn($(this));
-            });
+            // circles[i].on('mouseover',function(){
+            //     activeOn($(this));
+            // });
 
-            circles[i].on('mouseout',function(){
-                activeOff($(this));
-            });
+            // circles[i].on('mouseout',function(){
+            //     activeOff($(this));
+            // });
 
-            function activeOn(subject){
-                var nation = subject.attr('data-nation');
-                var targetClass = '.entry' + nation;
-                var target = d3.select(targetClass);
-                tooltip.text(nation);
-                target.classed('active',true);
-            }
+            // function activeOn(subject){
+            //     var nation = subject.attr('data-nation');
+            //     var targetClass = '.entry' + nation;
+            //     var target = d3.select(targetClass);
+            //     tooltip.text(nation);
+            //     target.classed('active',true);
+            // }
 
-            function activeOff(subject){
-                var nation = subject.attr('data-nation');
-                var targetClass = '.entry' + nation;
-                var target = d3.select(targetClass);
-                tooltip.text('nothing selected');
-                target.classed('active',false);
-            }
+            // function activeOff(subject){
+            //     var nation = subject.attr('data-nation');
+            //     var targetClass = '.entry' + nation;
+            //     var target = d3.select(targetClass);
+            //     tooltip.text('nothing selected');
+            //     target.classed('active',false);
+            // }
         }
 
     }
