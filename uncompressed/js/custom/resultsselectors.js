@@ -12,7 +12,6 @@ selectors.on('change',function(){
 function setChartVisibleState(dataSelector,status){
 	var targetClass = '.entry' + dataSelector;
 	var target = d3.select(targetClass);
-	console.log(target);
 	if (status) {
 		target.classed('active',true);
 	} else {
