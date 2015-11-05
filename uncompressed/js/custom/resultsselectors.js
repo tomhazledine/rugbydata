@@ -2,7 +2,9 @@ var selectors = $('.nationSelector');
 
 selectors.on('change',function(){
 	
-	// console.log(this.value);
+	var isChecked = this.checked;
+	var nation = $(this).attr('name');
+	console.log('the ' + nation + ' checkbox status is ' + isChecked);
 
 
 
