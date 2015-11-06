@@ -126,7 +126,7 @@ var DrawArea = function drawLine(options){
     var bgWrap = svgInner.append('g')
         .classed('background',true);
     
-    var barNumber = 6;
+    var barNumber = 1;
     var barHeight = height / barNumber;
     
     for (i = 0; i < barNumber; i++) {
@@ -165,7 +165,7 @@ var DrawArea = function drawLine(options){
     var yAxis = d3.svg.axis()
         .scale(yScale)
         .orient('left')
-        .tickValues([1,2,3,4,5,6])
+        // .tickValues([1,2,3,4,5,6])
         .tickFormat(d3.format());
 
     /**
@@ -245,7 +245,7 @@ var DrawArea = function drawLine(options){
         var yScaleExtent = d3.extent(data, function (d){ return d[settings.yColumn2]; });
         
         xScale.domain([xMin,xMax]);
-        yScale.domain([7,1]);
+        yScale.domain([yMin,yMax]);
 
         /**
          * AXES
