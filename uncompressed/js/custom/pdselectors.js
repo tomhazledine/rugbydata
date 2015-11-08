@@ -4,7 +4,7 @@ selectors.on('change',function(){
 	
 	var isChecked = this.checked;
 	var nation = $(this).attr('name');
-	console.log('the ' + nation + ' checkbox status is ' + isChecked);
+	// console.log('the ' + nation + ' checkbox status is ' + isChecked);
 	
 	setChartVisibleState(nation,isChecked);
 });

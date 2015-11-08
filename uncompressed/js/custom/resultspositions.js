@@ -276,20 +276,25 @@ var DrawLine = function drawLine(options){
             circles[i].enter().append('circle');
 
             circles[i]
+                .filter(function(d){ return !isNaN(d[settings.yColumn[i]]); })
                 .attr('cx',function (d){ return xScale(d[settings.xColumn[0]]); })
                 .attr('cy',function (d){ 
-                    if (d[settings.yColumn[i]] != null || !notNaN(d[settings.yColumn[i]])) {
-                        return yScale(d[settings.yColumn[i]]);
-                    } else {
-                        return 7;
-                    }
+                    return yScale(d[settings.yColumn[i]]);
+
+                    // if (d[settings.yColumn[i]] == null || isNaN(d[settings.yColumn[i]])) {
+                    //     return 7;
+                    // } else {
+                    //     return yScale(d[settings.yColumn[i]]);
+                    // }
                 })
                 .attr('r',function(d){
-                    if (d[settings.yColumn[i]] != null) {
-                        return settings.circleRadius;
-                    } else {
-                        return 0;
-                    }
+                    return settings.circleRadius;
+
+                    // if (d[settings.yColumn[i]] != null) {
+                    //     return settings.circleRadius;
+                    // } else {
+                    //     return 0;
+                    // }
                 })
                 .attr('data-nation',settings.yColumn[i])
                 .classed('chartcircle circle' + settings.yColumn[i], true);
@@ -300,7 +305,8 @@ var DrawLine = function drawLine(options){
              * LINES
              */
             lines[i] = d3.svg.line()
-                .defined(function(d) { return d[settings.yColumn[i]] != null; })
+                // .filter(function(d){ return !isNaN(d[settings.yColumn[i]]); })
+                .defined(function(d) { return !isNaN(d[settings.yColumn[i]]); })
                 .x(function(d){ return xScale(d[settings.xColumn[0]]); })
                 .y(function(d){ return yScale(d[settings.yColumn[i]]); })
                 .interpolate('monotone');// monotone | basis | linear | cardinal | bundle
