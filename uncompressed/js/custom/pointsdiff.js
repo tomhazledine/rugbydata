@@ -259,14 +259,14 @@ var DrawArea = function drawLine(options){
         var circles = [];
         var paths = [];
         var lines = [];
+        var areas = [];
+        var areaShape = [];
         var entryWrapper = [];
 
         for (i = 0; i < settings.yColumn.length; i++) {
 
             entryWrapper[i] = svgInner.append('g')
                 .classed('entry entry' + i + ' entry' + settings.yColumn[i],true);
-
-            paths[i] = entryWrapper[i].append('path');
 
             /**
              * CIRCLES
@@ -276,6 +276,7 @@ var DrawArea = function drawLine(options){
             circles[i].enter().append('circle');
 
             circles[i]
+                .filter(function(d){ return !isNaN(d[settings.yColumn[i]]); })
                 .attr('cx',function (d){ return xScale(d[settings.xColumn[0]]); })
                 .attr('cy',function (d){ 
                     if (d[settings.yColumn[i]] != null || !notNaN(d[settings.yColumn[i]])) {
@@ -299,8 +300,11 @@ var DrawArea = function drawLine(options){
             /**
              * LINES
              */
+            
+            paths[i] = entryWrapper[i].append('path');
+
             lines[i] = d3.svg.line()
-                .defined(function(d) { return d[settings.yColumn[i]] != null; })
+                .defined(function(d) { return !isNaN(d[settings.yColumn[i]]); })
                 .x(function(d){ return xScale(d[settings.xColumn[0]]); })
                 .y(function(d){ return yScale(d[settings.yColumn[i]]); })
                 .interpolate('monotone');// monotone | basis | linear | cardinal | bundle
@@ -311,6 +315,25 @@ var DrawArea = function drawLine(options){
                 .attr('data-nation',settings.yColumn[i])
                 .classed('chartline line' + settings.yColumn[i], true)
                 .attr('stroke-width','1px');
+
+            /**
+             * AREAS
+             */
+            
+            areas[i] = entryWrapper[i].append('path');
+
+            areaShape[i] = d3.svg.area()
+                .defined(function(d) { return !isNaN(d[settings.yColumn[i]]); })
+                .x(function(d){ return xScale(d[settings.xColumn[0]]); })
+                .y0(function(d){ return yScale(0); })
+                .y1(function(d){ return yScale(d[settings.yColumn[i]]); })
+                .interpolate('monotone');// monotone | basis | linear | cardinal | bundle
+
+            areas[i]
+                .attr('d',areaShape[i](data))
+                .attr('fill','none')
+                .attr('data-nation',settings.yColumn[i])
+                .classed('chartarea area' + settings.yColumn[i], true);
 
             /**
              * TRANSITIONS

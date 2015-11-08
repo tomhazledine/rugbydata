@@ -278,24 +278,8 @@ var DrawLine = function drawLine(options){
             circles[i]
                 .filter(function(d){ return !isNaN(d[settings.yColumn[i]]); })
                 .attr('cx',function (d){ return xScale(d[settings.xColumn[0]]); })
-                .attr('cy',function (d){ 
-                    return yScale(d[settings.yColumn[i]]);
-
-                    // if (d[settings.yColumn[i]] == null || isNaN(d[settings.yColumn[i]])) {
-                    //     return 7;
-                    // } else {
-                    //     return yScale(d[settings.yColumn[i]]);
-                    // }
-                })
-                .attr('r',function(d){
-                    return settings.circleRadius;
-
-                    // if (d[settings.yColumn[i]] != null) {
-                    //     return settings.circleRadius;
-                    // } else {
-                    //     return 0;
-                    // }
-                })
+                .attr('cy',function (d){ return yScale(d[settings.yColumn[i]]); })
+                .attr('r',function(d){ return settings.circleRadius; })
                 .attr('data-nation',settings.yColumn[i])
                 .classed('chartcircle circle' + settings.yColumn[i], true);
 
@@ -305,7 +289,6 @@ var DrawLine = function drawLine(options){
              * LINES
              */
             lines[i] = d3.svg.line()
-                // .filter(function(d){ return !isNaN(d[settings.yColumn[i]]); })
                 .defined(function(d) { return !isNaN(d[settings.yColumn[i]]); })
                 .x(function(d){ return xScale(d[settings.xColumn[0]]); })
                 .y(function(d){ return yScale(d[settings.yColumn[i]]); })
