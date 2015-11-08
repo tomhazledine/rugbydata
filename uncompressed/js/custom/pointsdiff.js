@@ -157,6 +157,8 @@ var DrawArea = function drawLine(options){
         .classed('axis xAxis',true);
     var yAxisG = axesGroup.append('g')
         .classed('axis yAxis',true);
+    var zAxisG = axesGroup.append('g')
+        .classed('axis zAxis',true);
     
     var xAxis = d3.svg.axis()
         .scale(xScale)
@@ -167,6 +169,10 @@ var DrawArea = function drawLine(options){
         .orient('left')
         // .tickValues([1,2,3,4,5,6])
         .tickFormat(d3.format());
+
+    var zAxis = d3.svg.axis()
+        .scale(xScale)
+        .tickFormat(function(d){return d3.time.format('%Y')(new Date((d * 1000)));});
 
     /**
      * Axes Labels
@@ -252,6 +258,9 @@ var DrawArea = function drawLine(options){
          */
         xAxisG.call(xAxis);
         yAxisG.call(yAxis);
+        zAxisG.call(xAxis);
+        zAxisG
+            .attr('transform','translate(0,' + yScale(0) + ')')
 
         /**
          * CREATE SHAPES
@@ -335,6 +344,20 @@ var DrawArea = function drawLine(options){
                 .attr('data-nation',settings.yColumn[i])
                 .classed('chartarea area' + settings.yColumn[i], true);
 
+            // /**
+            //  * ZERO LINE
+            //  */
+            // var zeroLinePath = d3.svg.line()
+            //     .x(function(d){ return xScale(xMin)]; })
+            //     .y(function(d){ return yScale(0); })
+            //     .interpolate('monotone');// monotone | basis | linear | cardinal | bundle
+
+            // var zeroLine = svgInner.append('path');
+
+            // zeroLine
+            //     .attr('d',zeroLinePath);
+            //     // .attr('transform','translate(0,' + yScale(0) + ')');
+            
             /**
              * TRANSITIONS
              */

@@ -35,7 +35,7 @@
 
     .chartline{
         stroke-width:.1rem;
-        stroke:$grey;
+        stroke:transparent;
         // opacity:.1;
         position:relative;
         z-index:2;
@@ -57,12 +57,26 @@
         // box-shadow:$black 0 0 0 1em;
     }
 
-    .xAxis .tick{
-        // transform:rotate(-90deg);
+    .xAxis{
+        line,path{
+            display:none;
+        }
+    }
+    .zAxis{
+        .tick{
+            line{
+                transform:translate(0, -45%);
+            }
+            text{
+                display:none;
+            }
+        }
     }
 
     .chartarea{
-        fill:rgba($grey,.2);
+        fill:rgba($grey,.3);
+        position:relative;
+        z-index:1;
     }
 
     .entry.active{
@@ -71,7 +85,7 @@
             // stroke-width:.2em;
         }
         .chartcircle{
-            opacity:1;
+            // opacity:1;
             stroke-width:2px;
             stroke-color:$black;
         }
