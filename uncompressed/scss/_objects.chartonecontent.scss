@@ -1,4 +1,4 @@
-#resultsLine{
+#chart1{
 
     height:14em;
     padding-bottom:0;
@@ -69,19 +69,4 @@
         }
     }
 
-}
-
-.tooltip{
-    position:relative;
-    padding:.5em 1em;
-    line-height:1;
-    z-index:4;
-    margin-top:1em;
-}
-
-.bgBar{
-    fill:#eee;
-    &.odd{
-        fill:#ddd;
-    }
 }

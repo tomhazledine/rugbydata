@@ -1,56 +1,5 @@
-/**
- * -----------------------------------------
- * DRAW Line
- * Draw a scatter graph using given options.
- *
- * options [object]:
- * 
- * dataSrc [path string]
- * wrapper [d3 selection]
- * margin [top,right,bottom,left]
- * xColumn [string]
- * yColumn [string]
- * -----------------------------------------
- */
 
-var DrawLine = function drawLine(options){
-
-    /**
-     * ---------------------------------
-     * OPTIONS
-     * 
-     * Use fallback values if options
-     * are not set in the function call,
-     * otherwise use defined options.
-     * ---------------------------------
-     */
-    
-    /**
-     * FALLBACKS
-     */
-    var settings = {
-        dataSrc      : '/week_temp.csv',
-        wrapper      : d3.select('body'),
-        margin       : { top: 20, right: 20, bottom: 20, left: 20 },
-        xColumn      : ['xColumn'],
-        yColumn      : ['yColumn'],
-        hasTimeX     : false,
-        hasTimeY     : false,
-        circleRadius : 3
-    };
-
-    /**
-     * SET OPTIONS (if declared)
-     */
-    if (options !== undefined) {
-        if ( options.dataSrc      !== undefined ) { settings.dataSrc      = options.dataSrc;      }
-        if ( options.wrapper      !== undefined ) { settings.wrapper      = options.wrapper;      }
-        if ( options.margin       !== undefined ) { settings.margin       = options.margin;       }
-        if ( options.xColumn      !== undefined ) { settings.xColumn      = options.xColumn;      }
-        if ( options.yColumn      !== undefined ) { settings.yColumn      = options.yColumn;      }
-        if ( options.hasTimeX     === true      ) { settings.hasTimeX     = true;                 }
-        if ( options.hasTimeY     === true      ) { settings.hasTimeY     = true;                 }
-    }
+var FinishingPositions = function finishingPositions(settings){
 
     /**
      * --------------------
@@ -63,13 +12,11 @@ var DrawLine = function drawLine(options){
      */
     function _type(data){
         for (i = 0; i < settings.xColumn.length; i++) {
-            if (settings.hasTimeX) {
-                data[settings.xColumn[i]] = (new Date(data[settings.xColumn[i]]).getTime()) / 1000;
-            } else {
-                data[settings.xColumn[i]] = +data[settings.xColumn[i]];
-            }
+            // X Axis uses dates in YYYY format
+            data[settings.xColumn[i]] = new Date(data[settings.xColumn[i]],0,1);
         }
         for (i = 0; i < settings.yColumn.length; i++) {
+            // Y Axis has multiple columns that must be integers, not strings
             data[settings.yColumn[i]] = +data[settings.yColumn[i]];
         }
         return data;
@@ -96,7 +43,7 @@ var DrawLine = function drawLine(options){
      * Set the x & y scales.
      * ------------------------
      */
-    var xScale = d3.scale.linear().range([0, width]),
+    var xScale = d3.time.scale().range([0, width]),
         yScale = d3.scale.linear().range([height, 0]);
 
     /**
@@ -134,11 +81,12 @@ var DrawLine = function drawLine(options){
         if ((i - 1) % 2){
             bgClass = bgClass + ' odd';
         }
-        bgWrap.append('rect')
-            .attr('width',width)
-            .attr('height',barHeight)
-            .classed(bgClass, true)
-            .attr('transform','translate(0,' + (barHeight * i) + ')');
+        bgWrap.append('line')
+            .attr('x1',0)
+            .attr('x2',width)
+            .attr('y1',(barHeight * i))
+            .attr('y2',(barHeight * i))
+            .classed(bgClass, true);
     }
 
     /**
@@ -161,7 +109,7 @@ var DrawLine = function drawLine(options){
     var xAxis = d3.svg.axis()
         .scale(xScale)
         .orient('bottom')
-        .tickFormat(function(d){return d3.time.format('%Y')(new Date((d * 1000)));});
+        .tickFormat(function(d){return d3.time.format('%Y')(new Date(d));});
     var yAxis = d3.svg.axis()
         .scale(yScale)
         .orient('left')
@@ -355,15 +303,17 @@ var DrawLine = function drawLine(options){
 
 }
 
-var testWrap1 = $('#resultsLine');
+var testWrap1 = $('#chart1');
 
 if(testWrap1.length) {
-    var testScatter = DrawLine({
+    var chartOne = FinishingPositions({
         dataSrc  : '/data/resultspositions.csv',
-        wrapper  : d3.select('#resultsLine'),
+        wrapper  : d3.select('#chart1'),
         margin   : { top: 20, right: 20, bottom: 30, left: 50 },
         xColumn  : ['year'],
         yColumn  : ['england','scotland','ireland','wales','france','italy'],
-        hasTimeX : true
+        hasTimeX : true,
+        hasTimeY : false,
+        circleRadius : 3
     });
 }

@@ -64,7 +64,8 @@ var DrawArea = function drawLine(options){
     function _type(data){
         for (i = 0; i < settings.xColumn.length; i++) {
             if (settings.hasTimeX) {
-                data[settings.xColumn[i]] = (new Date(data[settings.xColumn[i]]).getTime()) / 1000;
+                // Just handles data in YYYY format:
+                data[settings.xColumn[i]] = new Date(data[settings.xColumn[i]],0,1);
             } else {
                 data[settings.xColumn[i]] = +data[settings.xColumn[i]];
             }
@@ -96,7 +97,7 @@ var DrawArea = function drawLine(options){
      * Set the x & y scales.
      * ------------------------
      */
-    var xScale = d3.scale.linear().range([0, width]),
+    var xScale = d3.time.scale().range([0, width]),
         yScale = d3.scale.linear().range([height, 0]);
 
     /**
@@ -163,7 +164,9 @@ var DrawArea = function drawLine(options){
     var xAxis = d3.svg.axis()
         .scale(xScale)
         .orient('bottom')
-        .tickFormat(function(d){return d3.time.format('%Y')(new Date((d * 1000)));});
+        // .ticks(15)
+        .tickFormat(function(d){return d3.time.format('%Y')(new Date(d));});
+        // .tickValues(d3.time.days(t1, t2).filter(function(d, i){ return !(i % 2); }))
     var yAxis = d3.svg.axis()
         .scale(yScale)
         .orient('left')
@@ -172,7 +175,8 @@ var DrawArea = function drawLine(options){
 
     var zAxis = d3.svg.axis()
         .scale(xScale)
-        .tickFormat(function(d){return d3.time.format('%Y')(new Date((d * 1000)));});
+        // .ticks('%Y')
+        .tickFormat(d3.time.format('%Y'));
 
     /**
      * Axes Labels
@@ -180,8 +184,8 @@ var DrawArea = function drawLine(options){
 
     var xLabelOffset = 35;
     var xLabelText = 'Year';
-    var yLabelOffset = -30;
-    var yLabelText = 'Finishing Position';
+    var yLabelOffset = -35;
+    var yLabelText = 'Points Difference';
 
     var yAxisLabel = yAxisG.append('text')
         .classed('axisLabel',true)
@@ -256,11 +260,21 @@ var DrawArea = function drawLine(options){
         /**
          * AXES
          */
+        // var xLength = data[settings.xColumn];
+        // console.log(xLength);
+
         xAxisG.call(xAxis);
         yAxisG.call(yAxis);
-        zAxisG.call(xAxis);
+
+        // var xLength = xMax - xMin;
+        // var yearMax = d3.time.format('%Y')(new Date(xMax));
+        // var yearMin = d3.time.format('%Y')(new Date(xMin));
+        // var yearCount = yearMax - yearMin;
+        // zAxis.ticks(yearCount);
+
+        zAxisG.call(zAxis);
         zAxisG
-            .attr('transform','translate(0,' + yScale(0) + ')')
+            .attr('transform','translate(0,' + yScale(0) + ')');
 
         /**
          * CREATE SHAPES
@@ -316,7 +330,7 @@ var DrawArea = function drawLine(options){
                 .defined(function(d) { return !isNaN(d[settings.yColumn[i]]); })
                 .x(function(d){ return xScale(d[settings.xColumn[0]]); })
                 .y(function(d){ return yScale(d[settings.yColumn[i]]); })
-                .interpolate('monotone');// monotone | basis | linear | cardinal | bundle
+                .interpolate('linear');// monotone | basis | linear | cardinal | bundle
 
             paths[i]
                 .attr('d',lines[i](data))
@@ -336,7 +350,7 @@ var DrawArea = function drawLine(options){
                 .x(function(d){ return xScale(d[settings.xColumn[0]]); })
                 .y0(function(d){ return yScale(0); })
                 .y1(function(d){ return yScale(d[settings.yColumn[i]]); })
-                .interpolate('monotone');// monotone | basis | linear | cardinal | bundle
+                .interpolate('linear');// monotone | basis | linear | cardinal | bundle
 
             areas[i]
                 .attr('d',areaShape[i](data))
@@ -364,7 +378,6 @@ var DrawArea = function drawLine(options){
             paths[i].on('mouseover',function(){
                 activeOn($(this));
             });
-
             paths[i].on('mouseout',function(){
                 activeOff($(this));
             });
@@ -372,13 +385,20 @@ var DrawArea = function drawLine(options){
             circles[i].on('mouseover',function(){
                 activeOn($(this));
             });
-
             circles[i].on('mouseout',function(){
+                activeOff($(this));
+            });
+
+            areas[i].on('mouseover',function(){
+                activeOn($(this));
+            });
+            areas[i].on('mouseout',function(){
                 activeOff($(this));
             });
 
             function activeOn(subject){
                 var nation = subject.attr('data-nation');
+                setChartVisibleState(nation,true);
                 // var targetClass = '.entry' + nation;
                 // var target = d3.select(targetClass);
                 tooltip.text(nation);
@@ -386,7 +406,8 @@ var DrawArea = function drawLine(options){
             }
 
             function activeOff(subject){
-                // var nation = subject.attr('data-nation');
+                var nation = subject.attr('data-nation');
+                setChartVisibleState(nation,false);
                 // var targetClass = '.entry' + nation;
                 // var target = d3.select(targetClass);
                 tooltip.text('nothing selected');
@@ -412,11 +433,15 @@ var DrawArea = function drawLine(options){
 
 }
 
-var testArea = DrawArea({
-    dataSrc  : '/data/resultspositions.csv',
-    wrapper  : d3.select('#pointsArea'),
-    margin   : { top: 20, right: 20, bottom: 30, left: 50 },
-    xColumn  : ['year'],
-    yColumn  : ['england_pd','scotland_pd','ireland_pd','wales_pd','france_pd','italy_pd'],
-    hasTimeX : true
-});
+var testWrap2 = $('#pointsArea');
+
+if (testWrap2.length) {
+    var testArea = DrawArea({
+        dataSrc  : '/data/resultspositions.csv',
+        wrapper  : d3.select('#pointsArea'),
+        margin   : { top: 20, right: 20, bottom: 30, left: 50 },
+        xColumn  : ['year'],
+        yColumn  : ['england_pd','scotland_pd','ireland_pd','wales_pd','france_pd','italy_pd'],
+        hasTimeX : true
+    });
+}

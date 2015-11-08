@@ -57,9 +57,17 @@
         // box-shadow:$black 0 0 0 1em;
     }
 
+    .axesWrapper{
+        font-size:.8em;
+    }
+
     .xAxis{
         line,path{
-            display:none;
+            // display:none;
+        }
+        text{
+            // transform:rotate(-90deg, 50, 100);
+            // transform-origin:bottom right;
         }
     }
     .zAxis{
@@ -85,7 +93,7 @@
             // stroke-width:.2em;
         }
         .chartcircle{
-            // opacity:1;
+            opacity:1;
             stroke-width:2px;
             stroke-color:$black;
         }
