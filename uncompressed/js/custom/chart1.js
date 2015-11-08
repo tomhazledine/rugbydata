@@ -270,6 +270,7 @@ var FinishingPositions = function finishingPositions(settings){
 
             function activeOn(subject){
                 var nation = subject.attr('data-nation');
+                
                 // var targetClass = '.entry' + nation;
                 // var target = d3.select(targetClass);
                 tooltip.text(nation);
