@@ -270,19 +270,19 @@ var FinishingPositions = function finishingPositions(settings){
 
             function activeOn(subject){
                 var nation = subject.attr('data-nation');
-                
-                // var targetClass = '.entry' + nation;
-                // var target = d3.select(targetClass);
+
+                var targetClass = '.hover.entry' + nation;
+                var target = d3.select(targetClass);
                 tooltip.text(nation);
-                // target.classed('active',true);
+                target.classed('active',true);
             }
 
             function activeOff(subject){
-                // var nation = subject.attr('data-nation');
-                // var targetClass = '.entry' + nation;
-                // var target = d3.select(targetClass);
+                var nation = subject.attr('data-nation');
+                var targetClass = '.hover.entry' + nation;
+                var target = d3.select(targetClass);
                 tooltip.text('nothing selected');
-                // target.classed('active',false);
+                target.classed('active',false);
             }
         }
 

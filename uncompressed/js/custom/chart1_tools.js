@@ -1,4 +1,4 @@
-function activateLines(options,wrapper){
+function activateLines(options){
     settings = [];
 
     for (i = 0; i < options.length; i++) {
@@ -51,14 +51,39 @@ function activateLines(options,wrapper){
     }
 }
 
-var button = $('.triggerchart1');
+var button1 = $('.triggerchart1.one');
+var button2 = $('.triggerchart1.two');
+var button3 = $('.triggerchart1.three');
+var button4 = $('.triggerchart1.four');
 
-button.on('click',function(){
-    activateLines(
-        [
-            [1,1,'england'],
+button1.on('click',function(){
+    activateLines( [
+            [1,0,'england']
+    ]);
+});
+
+button2.on('click',function(){
+    activateLines( [
+            [0,1,'england'],
             [1,0,'italy']
-        ],
-        d3.select('#chart1')
-    );
+    ]);
+});
+
+button3.on('click',function(){
+    activateLines( [
+            [0,1,'england'],
+            [0,1,'italy'],
+            [1,0,'wales']
+    ]);
+});
+
+button4.on('click',function(){
+    activateLines( [
+            [0,1,'england'],
+            [0,1,'italy'],
+            [0,1,'wales'],
+            [0,1,'scotland'],
+            [0,1,'ireland'],
+            [0,1,'france'],
+    ]);
 });
