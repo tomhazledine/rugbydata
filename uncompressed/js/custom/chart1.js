@@ -240,7 +240,7 @@ var FinishingPositions = function finishingPositions(settings){
                 .defined(function(d) { return !isNaN(d[settings.yColumn[i]]); })
                 .x(function(d){ return xScale(d[settings.xColumn[0]]); })
                 .y(function(d){ return yScale(d[settings.yColumn[i]]); })
-                .interpolate('monotone');// monotone | basis | linear | cardinal | bundle
+                .interpolate('linear');// monotone | basis | linear | cardinal | bundle
 
             paths[i]
                 .attr('d',lines[i](data))
