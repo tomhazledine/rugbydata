@@ -34,7 +34,7 @@ function activateLines(options){
             entry.classed('active',false);
         }
 
-        console.log(entry);
+        // console.log(entry);
 
     }
 
@@ -51,39 +51,73 @@ function activateLines(options){
     }
 }
 
+function activateCaptions(target){
+    var targetClass = '.chart1caption' + target;
+    var targetCaption = $(targetClass);
+    var captions = $('.chart1caption');
+
+    captions.removeClass('active');
+    targetCaption.addClass('active');
+    // console.log('the wrapper:');
+    // console.log(wrapper);
+    // console.log('the target:');
+    // console.log(target);
+}
+
 var button1 = $('.triggerchart1.one');
 var button2 = $('.triggerchart1.two');
 var button3 = $('.triggerchart1.three');
 var button4 = $('.triggerchart1.four');
 
 button1.on('click',function(){
+    var target = $(this).data('target');
+    activateCaptions(target);
+
     activateLines( [
-            [1,0,'england']
+            [1,0,'england'],
+            [0,0,'italy'],
+            [0,0,'wales'],
+            [0,0,'scotland'],
+            [0,0,'ireland'],
+            [0,0,'france']
     ]);
 });
 
 button2.on('click',function(){
+    var target = $(this).data('target');
+    activateCaptions(target);
     activateLines( [
             [0,1,'england'],
-            [1,0,'italy']
+            [1,0,'italy'],
+            [0,0,'wales'],
+            [0,0,'scotland'],
+            [0,0,'ireland'],
+            [0,0,'france']
     ]);
 });
 
 button3.on('click',function(){
+    var target = $(this).data('target');
+    activateCaptions(target);
     activateLines( [
             [0,1,'england'],
             [0,1,'italy'],
-            [1,0,'wales']
+            [1,0,'wales'],
+            [0,0,'scotland'],
+            [0,0,'ireland'],
+            [0,0,'france']
     ]);
 });
 
 button4.on('click',function(){
+    var target = $(this).data('target');
+    activateCaptions(target);
     activateLines( [
             [0,1,'england'],
             [0,1,'italy'],
             [0,1,'wales'],
             [0,1,'scotland'],
             [0,1,'ireland'],
-            [0,1,'france'],
+            [0,1,'france']
     ]);
 });

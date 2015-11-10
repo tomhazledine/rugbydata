@@ -1,0 +1,14 @@
+.captionSelectors{
+	text-align:center;
+}
+
+.triggerchart1{
+	display:inline-block;
+}
+
+.chart1caption{
+	display:none;
+	&.active{
+		display:block;
+	}
+}
