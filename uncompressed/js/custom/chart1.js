@@ -273,16 +273,27 @@ var FinishingPositions = function finishingPositions(settings){
 
                 var targetClass = '.hover.entry' + nation;
                 var target = d3.select(targetClass);
-                tooltip.text(nation);
+                // tooltip.text(nation);
                 target.classed('active',true);
+
+                // if (target.hasClass('hover'))
+
+                tooltip
+                    .text(nation)
+                    .classed('active',true)
+                    .style('left', (d3.event.pageX - 40) + 'px')
+                    .style('top', (d3.event.pageY) + 'px');
             }
 
             function activeOff(subject){
                 var nation = subject.attr('data-nation');
                 var targetClass = '.hover.entry' + nation;
                 var target = d3.select(targetClass);
-                tooltip.text('nothing selected');
                 target.classed('active',false);
+
+                tooltip
+                    .text('nothing selected')
+                    .classed('active',false);
             }
         }
 

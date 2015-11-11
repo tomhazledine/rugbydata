@@ -1,0 +1,19 @@
+.chart1tooltip{
+    position:absolute;
+    display:inline-block;
+    z-index:2;
+    // width:2em;
+    // height:2em;
+    padding:.5em;
+    text-align:center;
+    line-height:1;
+    background:$grey;
+    color:$black;
+    border-radius:1em;
+    opacity:0;
+    margin-top:-1em;
+    pointer-events:none;
+    &.active{
+        opacity:1;
+    }
+}
