@@ -2,8 +2,10 @@
     <h2>Chart 1</h2>
     
     <div id="chart1" class="chartContainer"></div>
-
-    <div class="tooltip chart1tooltip">Tooltip</div>
+    
+    <div class="tooltips chart1tooltips"></div>
+    
+    <!-- <div class="tooltip chart1tooltip">Tooltip</div> -->
 
     <div class="captionSelectors">
         <button data-target="1" class="triggerchart1 one">1</button>

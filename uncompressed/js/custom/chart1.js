@@ -133,7 +133,8 @@ var FinishingPositions = function finishingPositions(settings){
     /**
      * Tooltip
      */
-    var tooltip = d3.select('.tooltip');
+    // var tooltip = d3.select('.tooltip');
+    var tooltipsWrapper = d3.select('.chart1tooltips');
 
     /**
      * -------------------------
@@ -208,6 +209,7 @@ var FinishingPositions = function finishingPositions(settings){
         var paths = [];
         var lines = [];
         var entryWrapper = [];
+        var tooltips = [];
 
         for (i = 0; i < settings.yColumn.length; i++) {
 
@@ -250,6 +252,15 @@ var FinishingPositions = function finishingPositions(settings){
                 .attr('stroke-width','1px');
 
             /**
+             * TOOLTIPS
+             */
+            tooltips[i] = tooltipsWrapper.append('div')
+                .classed('chart1tooltip',true)
+                .classed(settings.yColumn[i],true)
+                .text(settings.yColumn[i]);
+            
+
+            /**
              * TRANSITIONS
              */
             paths[i].on('mouseover',function(){
@@ -273,15 +284,19 @@ var FinishingPositions = function finishingPositions(settings){
 
                 var targetClass = '.hover.entry' + nation;
                 var target = d3.select(targetClass);
+
+                var targetTooltipClass = '.chart1tooltip.' + nation;
+                var targetTooltip = d3.select(targetTooltipClass);
                 // tooltip.text(nation);
                 target.classed('active',true);
 
                 // if (target.hasClass('hover'))
 
-                tooltip
-                    .text(nation)
+                targetTooltip
+                    // .text(nation)
+                    // .classed(nation,true)
                     .classed('active',true)
-                    .style('left', (d3.event.pageX - 40) + 'px')
+                    .style('left', (d3.event.pageX + 20) + 'px')
                     .style('top', (d3.event.pageY) + 'px');
             }
 
@@ -291,8 +306,11 @@ var FinishingPositions = function finishingPositions(settings){
                 var target = d3.select(targetClass);
                 target.classed('active',false);
 
-                tooltip
-                    .text('nothing selected')
+                var targetTooltipClass = '.chart1tooltip.' + nation;
+                var targetTooltip = d3.select(targetTooltipClass);
+                targetTooltip
+                    // .text('nothing selected')
+                    // .classed(nation,false)
                     .classed('active',false);
             }
         }
