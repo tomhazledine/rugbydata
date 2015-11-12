@@ -8,7 +8,7 @@ function activateLines(options){
          */
         settings[i] = {
             active: _checkFalse(options[i][0]),
-            hover: _checkFalse(options[i][1]),
+            passive: _checkFalse(options[i][1]),
             target: options[i][2]
         }
 
@@ -17,21 +17,27 @@ function activateLines(options){
          */
         var entryClass = '.entry' + settings[i].target;
         var entry = d3.select(entryClass);
+        var tooltipClass = '.chart1tooltip.' + settings[i].target;
+        var tooltip = d3.select(tooltipClass);
         // var entries = $('.entry');
 
         /**
          * APPLY STATES
          */
-        if (settings[i].hover) {
-            entry.classed('hover',true);
+        if (settings[i].passive) {
+            entry.classed('passive',true);
+            tooltip.classed('passive',true);
         } else {
-            entry.classed('hover',false);
+            entry.classed('passive',false);
+            tooltip.classed('passive',false);
         }
 
         if (settings[i].active) {
             entry.classed('active',true);
+            tooltip.classed('active',true);
         } else {
             entry.classed('active',false);
+            tooltip.classed('active',false);
         }
 
         // console.log(entry);

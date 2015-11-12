@@ -6,7 +6,7 @@
     .chartWrapper{
         overflow:hidden;
     }
-    .active .chartline,.hover.active .chartline{
+    .active .chartline,.passive.active .chartline,.passive.hovering .chartline{
         &.lineengland{ stroke:$england; }
         &.linescotland{ stroke:$scotland; }
         &.lineireland{ stroke:$ireland; }
@@ -31,14 +31,14 @@
         cursor:pointer;
         transition:opacity,stroke;
         transition-duration:.2s;
-        // &:hover{
+        // &:passive{
         //     opacity:1;
         //     z-index:3;
         //     stroke-width:.2em;
         // }
     }
 
-    .hover .chartline{
+    .passive .chartline{
         stroke:$grey;
     }
 

@@ -282,36 +282,36 @@ var FinishingPositions = function finishingPositions(settings){
             function activeOn(subject){
                 var nation = subject.attr('data-nation');
 
-                var targetClass = '.hover.entry' + nation;
+                var targetClass = '.passive.entry' + nation;
                 var target = d3.select(targetClass);
 
                 var targetTooltipClass = '.chart1tooltip.' + nation;
                 var targetTooltip = d3.select(targetTooltipClass);
                 // tooltip.text(nation);
-                target.classed('active',true);
+                target.classed('hovering',true);
 
-                // if (target.hasClass('hover'))
+                // if (target.hasClass('passive'))
 
                 targetTooltip
                     // .text(nation)
                     // .classed(nation,true)
-                    .classed('active',true)
+                    .classed('hovering',true)
                     .style('left', (d3.event.pageX + 20) + 'px')
                     .style('top', (d3.event.pageY) + 'px');
             }
 
             function activeOff(subject){
                 var nation = subject.attr('data-nation');
-                var targetClass = '.hover.entry' + nation;
+                var targetClass = '.passive.entry' + nation;
                 var target = d3.select(targetClass);
-                target.classed('active',false);
+                target.classed('hovering',false);
 
                 var targetTooltipClass = '.chart1tooltip.' + nation;
                 var targetTooltip = d3.select(targetTooltipClass);
                 targetTooltip
                     // .text('nothing selected')
                     // .classed(nation,false)
-                    .classed('active',false);
+                    .classed('hovering',false);
             }
         }
 
