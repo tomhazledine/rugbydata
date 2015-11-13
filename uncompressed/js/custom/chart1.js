@@ -11,6 +11,7 @@ var FinishingPositions = function finishingPositions(settings){
      * --------------------
      */
     function _type(data){
+        // console.log(settings.xColumn.length);
         for (i = 0; i < settings.xColumn.length; i++) {
             // X Axis uses dates in YYYY format
             data[settings.xColumn[i]] = new Date(data[settings.xColumn[i]],0,1);
@@ -320,21 +321,54 @@ var FinishingPositions = function finishingPositions(settings){
         /**
          * HOVER TARGETS
          */
-        var hoverTargets = svgInner.append('g')
-            .classed('hoverTargets',true);
+        // var hoverTargetWidth = width / settings.xColumn[0].length;
+        // var hoverTargetNumber = settings.xColumn[0].length;
+        // var testVar = data[settings.xColumn[0]];
+        // console.log(testVar);
         
-        var hoverTargetNumber = 6;
-        var barHeight = height / barNumber;
+        // var hoverTargets = svgInner.selectAll('rect')
+        //   .data(data)
+        //   .enter()
+        //     .append('rect')
+        //     .attr("x", function(datum, index) { return xScale(index); })
+        //     .attr("y", 0)
+        //     .attr('width',hoverTargetWidth)
+        //     .attr('height',height)
+        //     .classed('hoverTarget',true);
         
-        for (i = 0; i < barNumber; i++) {
-            var hoverTargetWidth = width / hoverTargetNumber;
+        hoverTargets = svgInner.selectAll('rect').data(data);
+
+        hoverTargets.enter().append('rect');
+
+        function getit(d){ return d[settings.xColumn[0]]; }
+
+        var hoverTargetNumber = getit();
+        console.log(hoverTargetNumber);
+
+        hoverTargets
+            // .filter(function(d){ return !isNaN(d[settings.yColumn[i]]); })
+            .attr('x',function (d){ return xScale(d[settings.xColumn[0]]); })
+            .attr('y',0)
+            // .attr('data-nation',settings.yColumn[i])
+            .classed('hoverTarget', true);
+
+        hoverTargets.exit().remove();
+
+        // var hoverTargets = svgInner.append('g')
+        //     .classed('hoverTargets',true);
+        
+        // // var hoverTargetNumber = settings.xColumn[0].length;
+        // // var barHeight = height / barNumber;
+        
+        // for (i = 0; i < barNumber; i++) {
+        //     // var hoverTargetWidth = width / hoverTargetNumber;
             
-            hoverTargets.append('rect')
-                .classed('hoverTarget',true)
-                .attr('width',hoverTargetWidth)
-                .attr('height',height)
-                .attr('transform','translate(' + (hoverTargetWidth * i) + ',0)');
-        }
+        //     hoverTargets.append('rect')
+        //         .classed('hoverTarget',true)
+        //         .attr('width',hoverTargetWidth)
+        //         .attr('height',height)
+        //         .attr('transform','translate(' + (hoverTargetWidth * i) + ',0)');
+        // }
 
     }
 
