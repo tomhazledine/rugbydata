@@ -5,4 +5,12 @@
         stroke-dasharray:5,5;
         fill:none;
     }
+    .hoverTarget{
+    	fill:rgba($black,0);
+    	transition:fill .2s;
+    	cursor:pointer;
+    	&:hover{
+    		fill:rgba($black,.5);
+    	}
+    }
 }

@@ -205,11 +205,14 @@ var FinishingPositions = function finishingPositions(settings){
         /**
          * CREATE SHAPES
          */
+        
+        // Setup vars to handle the `for` statement
         var circles = [];
         var paths = [];
         var lines = [];
         var entryWrapper = [];
         var tooltips = [];
+        var hoverTargets = [];
 
         for (i = 0; i < settings.yColumn.length; i++) {
 
@@ -258,7 +261,6 @@ var FinishingPositions = function finishingPositions(settings){
                 .classed('chart1tooltip',true)
                 .classed(settings.yColumn[i],true)
                 .text(settings.yColumn[i]);
-            
 
             /**
              * TRANSITIONS
@@ -313,6 +315,25 @@ var FinishingPositions = function finishingPositions(settings){
                     // .classed(nation,false)
                     .classed('hovering',false);
             }
+        }
+
+        /**
+         * HOVER TARGETS
+         */
+        var hoverTargets = svgInner.append('g')
+            .classed('hoverTargets',true);
+        
+        var hoverTargetNumber = 6;
+        var barHeight = height / barNumber;
+        
+        for (i = 0; i < barNumber; i++) {
+            var hoverTargetWidth = width / hoverTargetNumber;
+            
+            hoverTargets.append('rect')
+                .classed('hoverTarget',true)
+                .attr('width',hoverTargetWidth)
+                .attr('height',height)
+                .attr('transform','translate(' + (hoverTargetWidth * i) + ',0)');
         }
 
     }
