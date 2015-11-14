@@ -336,23 +336,39 @@ var FinishingPositions = function finishingPositions(settings){
         //     .attr('height',height)
         //     .classed('hoverTarget',true);
         
-        hoverTargets = svgInner.selectAll('rect').data(data);
+        
 
-        hoverTargets.enter().append('rect');
 
-        function getit(d){ return d[settings.xColumn[0]]; }
 
-        var hoverTargetNumber = getit();
-        console.log(hoverTargetNumber);
 
-        hoverTargets
-            // .filter(function(d){ return !isNaN(d[settings.yColumn[i]]); })
-            .attr('x',function (d){ return xScale(d[settings.xColumn[0]]); })
-            .attr('y',0)
-            // .attr('data-nation',settings.yColumn[i])
-            .classed('hoverTarget', true);
 
-        hoverTargets.exit().remove();
+
+
+        // hoverTargets = svgInner.selectAll('rect').data(data);
+
+        // hoverTargets.enter().append('rect');
+
+        // function getit(d){ return d[settings.xColumn[0]]; }
+
+        // var hoverTargetNumber = getit();
+        // console.log(hoverTargetNumber);
+
+        // hoverTargets
+        //     // .filter(function(d){ return !isNaN(d[settings.yColumn[i]]); })
+        //     .attr('x',function (d){ return xScale(d[settings.xColumn[0]]); })
+        //     .attr('y',0)
+        //     // .attr('data-nation',settings.yColumn[i])
+        //     .classed('hoverTarget', true);
+
+        // hoverTargets.exit().remove();
+
+        
+
+
+
+
+
+
 
         // var hoverTargets = svgInner.append('g')
         //     .classed('hoverTargets',true);
