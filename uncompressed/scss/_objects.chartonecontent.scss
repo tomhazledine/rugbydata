@@ -56,23 +56,12 @@
         }
     }
 
-    .axesWrapper{
-        font-size:.8em;
-    }
-
     .chartcircle{
         opacity:0;
         cursor:pointer;
         transition:opacity;
         transition-duration:.2s;
         // box-shadow:$black 0 0 0 1em;
-    }
-
-    .xAxis .tick{
-        // transform:rotate(-90deg);
-    }
-    .zAxix{
-
     }
 
     .entry.active{

@@ -70,12 +70,16 @@ function activateCaptions(target){
     // console.log(target);
 }
 
-var button1 = $('.triggerchart1.one');
-var button2 = $('.triggerchart1.two');
-var button3 = $('.triggerchart1.three');
-var button4 = $('.triggerchart1.four');
+var buttons = $('.triggerchart1'),
+    button1 = $('.triggerchart1.one'),
+    button2 = $('.triggerchart1.two'),
+    button3 = $('.triggerchart1.three'),
+    button4 = $('.triggerchart1.four');
 
 button1.on('click',function(){
+    buttons.removeClass('active');
+    $(this).addClass('active');
+    
     var target = $(this).data('target');
     activateCaptions(target);
 
@@ -90,6 +94,9 @@ button1.on('click',function(){
 });
 
 button2.on('click',function(){
+    buttons.removeClass('active');
+    $(this).addClass('active');
+    
     var target = $(this).data('target');
     activateCaptions(target);
     activateLines( [
@@ -103,6 +110,9 @@ button2.on('click',function(){
 });
 
 button3.on('click',function(){
+    buttons.removeClass('active');
+    $(this).addClass('active');
+    
     var target = $(this).data('target');
     activateCaptions(target);
     activateLines( [
@@ -116,6 +126,9 @@ button3.on('click',function(){
 });
 
 button4.on('click',function(){
+    buttons.removeClass('active');
+    $(this).addClass('active');
+    
     var target = $(this).data('target');
     activateCaptions(target);
     activateLines( [
