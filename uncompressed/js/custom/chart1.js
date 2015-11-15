@@ -220,6 +220,7 @@ var FinishingPositions = function finishingPositions(settings){
                 .classed('entry entry' + i + ' entry' + settings.yColumn[i],true);
 
             paths[i] = entryWrapper[i].append('path');
+            paths[i + settings.yColumn.length] = entryWrapper[i].append('path');
 
             /**
              * CIRCLES
@@ -254,6 +255,13 @@ var FinishingPositions = function finishingPositions(settings){
                 .classed('chartline line' + settings.yColumn[i], true)
                 .attr('stroke-width','1px');
 
+            paths[i + settings.yColumn.length]
+                .attr('d',lines[i](data))
+                .attr('fill','none')
+                .attr('data-nation',settings.yColumn[i])
+                .classed('chartline chartline_hover line' + settings.yColumn[i], true)
+                .attr('stroke-width','10px');
+
             /**
              * TOOLTIPS
              */
@@ -271,11 +279,11 @@ var FinishingPositions = function finishingPositions(settings){
             /**
              * TRANSITIONS
              */
-            paths[i].on('mouseover',function(){
+            paths[i + settings.yColumn.length].on('mouseover',function(){
                 activeOn($(this));
             });
 
-            paths[i].on('mouseout',function(){
+            paths[i + settings.yColumn.length].on('mouseout',function(){
                 activeOff($(this));
             });
 
