@@ -11,7 +11,6 @@ var FinishingPositions = function finishingPositions(settings){
      * --------------------
      */
     function _type(data){
-        // console.log(settings.xColumn.length);
         for (i = 0; i < settings.xColumn.length; i++) {
             // X Axis uses dates in YYYY format
             data[settings.xColumn[i]] = new Date(data[settings.xColumn[i]],0,1);
@@ -259,8 +258,14 @@ var FinishingPositions = function finishingPositions(settings){
              * TOOLTIPS
              */
             tooltips[i] = tooltipsWrapper.append('div')
-                .classed('chart1tooltip',true)
-                .classed(settings.yColumn[i],true)
+                .classed('chart1tooltip ' + settings.yColumn[i],true);
+                // .text(settings.yColumn[i])
+            
+            tooltips[i].append('div')
+                .classed('colourBox colourBox_' + settings.yColumn[i], true);
+
+            tooltips[i].append('p')
+                .classed('labelBox labelBox_' + settings.yColumn[i], true)
                 .text(settings.yColumn[i]);
 
             /**
@@ -298,9 +303,9 @@ var FinishingPositions = function finishingPositions(settings){
                 targetTooltip
                     // .text(nation)
                     // .classed(nation,true)
-                    .classed('hovering',true)
-                    .style('left', (d3.event.pageX + 20) + 'px')
-                    .style('top', (d3.event.pageY) + 'px');
+                    .classed('hovering',true);
+                    // .style('left', (d3.event.pageX + 20) + 'px')
+                    // .style('top', (d3.event.pageY) + 'px');
             }
 
             function activeOff(subject){

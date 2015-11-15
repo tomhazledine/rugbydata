@@ -1,4 +1,14 @@
 #chart1{
+    &.chartContainer{
+        width:80%;
+        float:left;
+        // background:#ccc;
+        // padding-bottom:40%;
+        height:15em;
+        margin:1em auto;
+        position:relative;
+    }
+
     .bgBar{
         stroke:#bbb;
         strole-width:.1rem;
@@ -13,4 +23,14 @@
     		fill:rgba($black,.5);
     	}
     }
+}
+
+.chart1tooltips{
+    width:20%;
+    min-height:15em;
+    float:right;
+    padding:.5em;
+    // margin-top:20px;
+    border:.1rem solid #bbb
+    // padding-top:40px;
 }
