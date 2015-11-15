@@ -19,6 +19,7 @@
     font-weight:$bold;
     font-size:.8em;
     margin-bottom:.5em;
+    color:$grey;
     .colourBox{
         float:left;
         width:1em;
@@ -30,15 +31,15 @@
     &.passive{
         opacity:1;
     }
-    // &.hovering{
-    //     background:$grey;
-    // }
+    &.hovering{
+        color:$black;
+    }
     &.england{
         .colourBox{
             background:$england;
         }
         &.hovering{
-            color:$england;
+            // color:$england;
         }
     }
     &.scotland{
@@ -46,7 +47,7 @@
             background:$scotland;
         }
         &.hovering{
-            color:$scotland;
+            // color:$scotland;
         }
         // border:solid .1rem $scotland;
         // background:rgba($white,.6);//rgba($scotland,.2);
@@ -57,7 +58,7 @@
             background:$ireland;
         }
         &.hovering{
-            color:$ireland;
+            // color:$ireland;
         }
         // border:solid .1rem $ireland;
         // background:rgba($white,.6);//rgba($ireland,.2);
@@ -68,7 +69,7 @@
             background:$wales;
         }
         &.hovering{
-            color:$wales;
+            // color:$wales;
         }
         // border:solid .1rem $wales;
         // background:rgba($white,.6);//rgba($wales,.2);
@@ -79,7 +80,7 @@
             background:$france;
         }
         &.hovering{
-            color:$france;
+            // color:$france;
         }
         // border:solid .1rem $france;
         // background:rgba($white,.6);//rgba($france,.2);
@@ -90,7 +91,7 @@
             background:$italy;
         }
         &.hovering{
-            color:$italy;
+            // color:$italy;
         }
         // border:solid .1rem $italy;
         // background:rgba($white,.6);//rgba($italy,.2);
