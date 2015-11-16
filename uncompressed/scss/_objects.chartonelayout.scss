@@ -7,6 +7,10 @@
         height:15em;
         margin:1em auto;
         position:relative;
+        @include bp(d2){
+            width:100%;
+            float:none;
+        }
     }
 
     .bgBar{
@@ -62,6 +66,12 @@
     float:right;
     padding:.5em;
     // margin-top:20px;
-    border:.1rem solid #bbb
+    border:.1rem solid #bbb;
     // padding-top:40px;
+    @include bp(d2){
+        width:100%;
+        float:none;
+        margin-bottom:1em;
+        min-height:auto;
+    }
 }
