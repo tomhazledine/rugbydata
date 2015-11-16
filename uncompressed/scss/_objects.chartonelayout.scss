@@ -7,7 +7,7 @@
         height:15em;
         margin:1em auto;
         position:relative;
-        @include bp(d2){
+        @include bp(d3){
             width:100%;
             float:none;
         }
@@ -68,10 +68,10 @@
     // margin-top:20px;
     border:.1rem solid #bbb;
     // padding-top:40px;
-    @include bp(d2){
+    @include bp(d3){
         width:100%;
         float:none;
         margin-bottom:1em;
-        min-height:auto;
+        min-height:0;
     }
 }

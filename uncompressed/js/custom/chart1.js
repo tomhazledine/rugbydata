@@ -412,6 +412,7 @@ var FinishingPositions = function finishingPositions(settings){
      * ----------------------
      */
     d3.csv(settings.dataSrc, _type, _renderChart);
+
     
 
 
