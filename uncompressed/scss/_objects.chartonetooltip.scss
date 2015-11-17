@@ -1,31 +1,22 @@
 .chart1tooltip{
     @extend .clearfix;
-    // position:absolute;
-    // display:inline-block;
-    // z-index:2;
-    // width:2em;
-    // height:2em;
-    // padding:.2em .5em;
-    // text-align:center;
     line-height:1;
-    // background:rgba($black,.6);//$grey;
-    // color:$white;
-    // border-radius:.2rem;
     opacity:0;
-    // margin-top:-1em;
-    // pointer-events:none;
     text-transform:uppercase;
     letter-spacing:.1em;
     font-weight:$bold;
     font-size:.8em;
     margin-bottom:.5em;
     color:$grey;
+    transition:color .2s;
     .colourBox{
         float:left;
         width:1em;
         height:1em;
         background:#aaa;
         margin-right:.5em;
+        transition:opacity .2s;
+        opacity:.4;
     }
     &.active,
     &.passive{
@@ -38,7 +29,8 @@
         .colourBox{
             background:$england;
         }
-        &.hovering{
+        &.hovering .colourBox{
+            opacity:1;
             // color:$england;
         }
     }
@@ -46,7 +38,8 @@
         .colourBox{
             background:$scotland;
         }
-        &.hovering{
+        &.hovering .colourBox{
+            opacity:1;
             // color:$scotland;
         }
         // border:solid .1rem $scotland;
@@ -57,7 +50,8 @@
         .colourBox{
             background:$ireland;
         }
-        &.hovering{
+        &.hovering .colourBox{
+            opacity:1;
             // color:$ireland;
         }
         // border:solid .1rem $ireland;
@@ -68,7 +62,8 @@
         .colourBox{
             background:$wales;
         }
-        &.hovering{
+        &.hovering .colourBox{
+            opacity:1;
             // color:$wales;
         }
         // border:solid .1rem $wales;
@@ -79,7 +74,8 @@
         .colourBox{
             background:$france;
         }
-        &.hovering{
+        &.hovering .colourBox{
+            opacity:1;
             // color:$france;
         }
         // border:solid .1rem $france;
@@ -90,7 +86,8 @@
         .colourBox{
             background:$italy;
         }
-        &.hovering{
+        &.hovering .colourBox{
+            opacity:1;
             // color:$italy;
         }
         // border:solid .1rem $italy;
