@@ -1,7 +1,9 @@
 .testGraph{
     padding:2em;
-    background:$white;
-    box-shadow:rgba(#ddd,1) 0 .2em .2em 0;
+    // background:$white;
+    // box-shadow:rgba(#ddd,1) 0 .2em .2em 0;
+    border-top:.1rem solid #ddd;
+    border-bottom:.1rem solid #ddd;
     height:auto;
     transition:height .2s;
 }

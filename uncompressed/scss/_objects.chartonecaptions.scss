@@ -26,6 +26,10 @@
     }
 }
 
+.chart1captions{
+    min-height:10em;
+}
+
 .chart1caption{
 	display:none;
 	&.active{
