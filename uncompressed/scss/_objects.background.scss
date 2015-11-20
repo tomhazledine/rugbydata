@@ -1,6 +1,7 @@
 .mainWrapper{
-	background:$red;
-	background:radial-gradient(#fff 40%, #ddd 90%);
+	background:#eee;//$red;
+	background:radial-gradient(#fff 50%, #eee 100%);
 	min-height:100%;
+	width:100%;
 	padding:2em;
 }
