@@ -3,3 +3,38 @@
     margin:0 auto;
     padding:2em 0;
 }
+
+
+
+.styleTest{
+	h1{
+		margin:1em 0;
+		font-family:$test;
+		font-size:4em;
+		border-bottom:none;
+	}
+	.textBlock{
+		// font-family:$test;
+		font-size:.8em;
+		max-width:40em;
+		h1{
+			font-family:$test;
+			font-size:2em;
+		}
+		h3{
+			// font-weight:900;
+			font-family:$test;
+			// font-style:italic;
+			margin-bottom:.2em;
+			font-size:1.2em;
+		}
+		.columnBlock{
+			column-count:2;
+			column-gap:1em;
+			column-rule:.1rem solid #eee;
+		}
+		p{
+			margin-bottom:1em;
+		}
+	}
+}
