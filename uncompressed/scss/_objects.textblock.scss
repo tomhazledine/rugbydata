@@ -10,20 +10,21 @@
 	h1{
 		margin:1em 0;
 		font-family:$test;
-		font-size:4em;
+		font-size:5em;
 		border-bottom:none;
+		text-transform:none;
+		letter-spacing:0;
+		font-weight:normal;
 	}
 	.textBlock{
 		// font-family:$test;
 		font-size:.8em;
 		max-width:40em;
-		h1{
-			font-family:$test;
-			font-size:2em;
-		}
 		h3{
 			// font-weight:900;
 			font-family:$test;
+			text-transform:uppercase;
+			letter-spacing:.1em;
 			// font-style:italic;
 			margin-bottom:.2em;
 			font-size:1.2em;
