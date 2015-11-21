@@ -9,11 +9,13 @@
 .styleTest{
 	h1{
 		margin:1em 0;
-		font-family:$test;
+		font-family:$abril;
 		font-size:5em;
+		// display:inline-block;
 		border-bottom:none;
 		text-transform:none;
 		letter-spacing:0;
+		line-height:1;
 		font-weight:normal;
 	}
 	.textBlock{
@@ -22,7 +24,7 @@
 		max-width:40em;
 		h3{
 			// font-weight:900;
-			font-family:$test;
+			font-family:$refrigerator;
 			text-transform:uppercase;
 			letter-spacing:.1em;
 			// font-style:italic;
@@ -35,7 +37,8 @@
 			column-rule:.1rem solid #eee;
 		}
 		p{
-			margin-bottom:1em;
+			// text-indent:2em;
+			margin-bottom:.7em;
 		}
 	}
 }
