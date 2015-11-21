@@ -18,22 +18,22 @@
 
     <div class="captionWrapper chart1captions">
         <div class="captionBlock one chart1caption chart1caption1">
-            <div class="textBlock">
+            <div class="textBlock columnBlock">
                 <p>Since 1992, England have been the most consistently successful team. They won the tournament seven times (including 3 Grand Slams) and have never finished worse than fourth.</p>
             </div>
         </div>
         <div class="captionBlock two chart1caption chart1caption2">
-            <div class="textBlock">
+            <div class="textBlock columnBlock">
                 <p>Italy, by contrast, have been the poorest performing team since they joined the tournament in 2000 (turning the 5 Nations into the 6 Nations).</p>
             </div>
         </div>
         <div class="captionBlock three chart1caption chart1caption3">
-            <div class="textBlock">
+            <div class="textBlock columnBlock">
                 <p>Wales are one of the stronger teams when judged by how many times they've won the tournament, but since 1992 they've also been one of the most volatile. They've won the tournament five times in the past 23 years, but in that same period they've finished last or next-to-last eight times.</p>
             </div>
         </div>
         <div class="captionBlock four chart1caption chart1caption4">
-            <div class="textBlock">
+            <div class="textBlock columnBlock">
                 <p>Use the buttons below to show each of the teams' finishing-position history from 1992–2015:</p>
             </div>
             <div class="selectors">
