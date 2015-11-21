@@ -1,6 +1,6 @@
 html{
     // background:#eee;
-    font-family:$text;
+    font-family:$display;
     height:100%;
 }
 body{
@@ -15,10 +15,10 @@ body{
 }
 h1,h2{
     display:inline-block;
-    font-family:$text;
+    font-family:$display;
     text-transform:uppercase;
     letter-spacing:.1em;
-    font-weight:$bold;
+    font-weight:400;
     border-bottom:.2rem solid $black;
 }
 h1{
