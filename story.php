@@ -2,7 +2,7 @@
 
 <div class="styleTest">
 	<h1>The 6 Nations: 1992–2015</h1>
-	<div class="textBlock">
+	<div class="textBlock rugbyBlock">
 		<h2>A medium length subheading that spreads to two lines</h2>
 		<div class="columnBlock">
             <h3>A short subheading</h3>
