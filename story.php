@@ -1,6 +1,8 @@
 <?php include('header.php'); ?>
 
 <div class="styleTest">
+    <div class="ballPoly"></div>
+    <!-- <img class="ballPoly_img" src="/assets/images/rugbyballpoly.svg"/> -->
 	<h1>The 6 Nations: 1992–2015</h1>
 	<div class="textBlock rugbyBlock">
 		<h2>A medium length subheading that spreads to two lines</h2>
