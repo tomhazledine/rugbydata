@@ -1,5 +1,5 @@
 <section class="testGraph clearfix">
-    <h2>Chart 1</h2>
+    <h2>Finishing Positions: 1992–2015</h2>
     
     <div class="chart1wrapper clearfix">
         <div id="chart1" class="chartContainer"></div>

@@ -123,12 +123,12 @@ var FinishingPositions = function finishingPositions(settings){
     var xLabelOffset = 35;
     var xLabelText = 'Year';
     var yLabelOffset = -30;
-    var yLabelText = 'Finishing Position';
+    // var yLabelText = 'Finishing Position';
 
     var yAxisLabel = yAxisG.append('text')
         .classed('axisLabel',true)
-        .attr('transform','translate(' + yLabelOffset + ',' + (height / 2) + ') rotate(-90)')
-        .text(yLabelText);
+        .attr('transform','translate(' + yLabelOffset + ',' + (height / 2) + ') rotate(-90)');
+        // .text(yLabelText);
 
     /**
      * Tooltip
@@ -246,7 +246,7 @@ var FinishingPositions = function finishingPositions(settings){
                 .defined(function(d) { return !isNaN(d[settings.yColumn[i]]); })
                 .x(function(d){ return xScale(d[settings.xColumn[0]]); })
                 .y(function(d){ return yScale(d[settings.yColumn[i]]); })
-                .interpolate('monotone');// monotone | basis | linear | cardinal | bundle
+                .interpolate('linear');// monotone | basis | linear | cardinal | bundle
 
             paths[i]
                 .attr('d',lines[i](data))
@@ -424,7 +424,7 @@ if(testWrap1.length) {
     var chartOne = FinishingPositions({
         dataSrc  : '/data/resultspositions.csv',
         wrapper  : d3.select('#chart1'),
-        margin   : { top: 20, right: 20, bottom: 30, left: 50 },
+        margin   : { top: 20, right: 20, bottom: 30, left: 15 },
         xColumn  : ['year'],
         yColumn  : ['england','scotland','ireland','wales','france','italy'],
         hasTimeX : true,
