@@ -23,6 +23,7 @@
 	<div class="columnBlock">
         <h3>Scoring</h3>
         <p>The difference between finishing first or second (or even third or fourth) can often be very slight. On occasion, the teams are so well matched that only a handful of scores separate them.</p>
+        <p>A more accurate assessment of a teams objective quality is Points Difference; the total points scored by a team, minus the number of points scored by their opponents. (a scored point is different from the "points" used to determine the tournament's finishing position)</p>
 	</div>
 </div>
 
