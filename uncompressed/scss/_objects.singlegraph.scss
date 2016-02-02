@@ -1,0 +1,62 @@
+.singleGraph{
+    padding:2em;
+    background:$grey;
+}
+
+.singleGraphContainer{
+    width:100%;
+    background:#ccc;
+    padding-bottom:40%;
+    margin:1em auto;
+    position:relative;
+}
+
+//     .bgBar{
+//         stroke:#bbb;
+//         strole-width:.1rem;
+//         stroke-dasharray:5,5;
+//         fill:none;
+//     }
+//     .hoverTarget{
+//     	fill:rgba($black,0);
+//     	transition:fill .2s;
+//     	cursor:pointer;
+//     	&:hover{
+//     		fill:rgba($black,.5);
+//     	}
+//     }
+
+//     .axesWrapper{
+//         font-size:.8em;
+//         text{
+//             fill:#777;
+//         }
+//     }
+
+//     .axis path{
+//         stroke:$grey;
+//     }
+
+//     .xAxis .tick{
+//         line{
+//             // display:none;
+//             stroke:$grey;
+//         }
+//         // transform:rotate(-90deg);
+//     }
+//     .yAxis path{
+//         display:none;
+//     }
+//     .yAxis .tick{
+//         line{
+//             display:none;
+//         }
+//     }
+
+//     .zAxix{
+
+//     }
+// }
+
+.singleGraphTooltips{
+}
