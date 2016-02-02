@@ -334,20 +334,20 @@ var SingleGraph = function singleGraph(settings){
         /**
          * HOVER TARGETS
          */
-        // var hoverTargetWidth = width / settings.xColumn[0].length;
-        // var hoverTargetNumber = settings.xColumn[0].length;
-        // var testVar = data[settings.xColumn[0]];
-        // console.log(testVar);
+        var hoverTargetWidth = width / settings.xColumn[0].length;
+        var hoverTargetNumber = settings.xColumn[0].length;
+        var testVar = data[settings.xColumn[0]];
+        console.log(testVar);
         
-        // var hoverTargets = svgInner.selectAll('rect')
-        //   .data(data)
-        //   .enter()
-        //     .append('rect')
-        //     .attr("x", function(datum, index) { return xScale(index); })
-        //     .attr("y", 0)
-        //     .attr('width',hoverTargetWidth)
-        //     .attr('height',height)
-        //     .classed('hoverTarget',true);
+        var hoverTargets = svgInner.selectAll('rect')
+          .data(data)
+          .enter()
+            .append('rect')
+            .attr("x", function(datum, index) { return xScale(index); })
+            .attr("y", 0)
+            .attr('width',hoverTargetWidth)
+            .attr('height',height)
+            .classed('hoverTarget',true);
         
         
 
@@ -386,11 +386,11 @@ var SingleGraph = function singleGraph(settings){
         // var hoverTargets = svgInner.append('g')
         //     .classed('hoverTargets',true);
         
-        // // var hoverTargetNumber = settings.xColumn[0].length;
+        // var hoverTargetNumber = settings.xColumn[0].length;
         // // var barHeight = height / barNumber;
         
         // for (i = 0; i < barNumber; i++) {
-        //     // var hoverTargetWidth = width / hoverTargetNumber;
+        //     var hoverTargetWidth = width / hoverTargetNumber;
             
         //     hoverTargets.append('rect')
         //         .classed('hoverTarget',true)
@@ -424,9 +424,9 @@ if(testWrap1.length) {
     var chartOne = SingleGraph({
         dataSrc  : '/data/resultspositions.csv',
         wrapper  : d3.select('#single'),
-        margin   : { top: 20, right: 20, bottom: 30, left: 15 },
+        margin   : { top: 20, right: 20, bottom: 30, left: 30 },
         xColumn  : ['year'],
-        yColumn  : ['england','wales','italy'],
+        yColumn  : ['england','wales'],
         hasTimeX : true,
         hasTimeY : false,
         circleRadius : 3
