@@ -334,20 +334,20 @@ var SingleGraph = function singleGraph(settings){
         /**
          * HOVER TARGETS
          */
-        var hoverTargetWidth = width / settings.xColumn[0].length;
-        var hoverTargetNumber = settings.xColumn[0].length;
-        var testVar = data[settings.xColumn[0]];
-        console.log(testVar);
+        // var hoverTargetWidth = width / settings.xColumn[0].length;
+        // var hoverTargetNumber = settings.xColumn[0].length;
+        // var testVar = data[settings.xColumn[0]];
+        // // console.log(testVar);
         
-        var hoverTargets = svgInner.selectAll('rect')
-          .data(data)
-          .enter()
-            .append('rect')
-            .attr("x", function(datum, index) { return xScale(index); })
-            .attr("y", 0)
-            .attr('width',hoverTargetWidth)
-            .attr('height',height)
-            .classed('hoverTarget',true);
+        // var hoverTargets = svgInner.selectAll('rect')
+        //   .data(data)
+        //   .enter()
+        //     .append('rect')
+        //     .attr("x", function(datum, index) { return xScale(index); })
+        //     .attr("y", 0)
+        //     .attr('width',hoverTargetWidth)
+        //     .attr('height',height)
+        //     .classed('hoverTarget',true);
         
         
 
