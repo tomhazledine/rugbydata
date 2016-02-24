@@ -337,7 +337,7 @@ var SingleGraph = function singleGraph(settings){
         // var hoverTargetWidth = width / settings.xColumn[0].length;
         // var hoverTargetNumber = settings.xColumn[0].length;
         // var testVar = data[settings.xColumn[0]];
-        // // console.log(testVar);
+        // console.log(testVar);
         
         // var hoverTargets = svgInner.selectAll('rect')
         //   .data(data)
@@ -422,11 +422,14 @@ var testWrap1 = $('#single');
 
 if(testWrap1.length) {
     var chartOne = SingleGraph({
-        dataSrc  : '/data/resultspositions.csv',
+        // dataSrc  : '/data/resultspositions.csv',
+        dataSrc  : '/data/tipstricks2.csv',
         wrapper  : d3.select('#single'),
         margin   : { top: 20, right: 20, bottom: 30, left: 30 },
-        xColumn  : ['year'],
-        yColumn  : ['england','wales'],
+        // xColumn  : ['year'],
+        // yColumn  : ['england','wales'],
+        xColumn  : ['date'],
+        yColumn  : ['close'],
         hasTimeX : true,
         hasTimeY : false,
         circleRadius : 3
