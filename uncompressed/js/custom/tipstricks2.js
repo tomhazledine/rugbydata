@@ -2,17 +2,21 @@
 var margin = {top: 30, right: 20, bottom: 30, left: 50},
     width = 600 - margin.left - margin.right,
     height = 270 - margin.top - margin.bottom;
+
 // Parse the date / time
 var parseDate = d3.time.format("%d-%b-%y").parse;
     bisectDate = d3.bisector(function(d) { return d.date; }).left;
+
 // Set the ranges
 var x = d3.time.scale().range([0, width]);
 var y = d3.scale.linear().range([height, 0]);
+
 // Define the axes
 var xAxis = d3.svg.axis().scale(x)
     .orient("bottom").ticks(5);
 var yAxis = d3.svg.axis().scale(y)
     .orient("left").ticks(5);
+
 // Define the line
 var valueline = d3.svg.line()
     .x(function(d) { return x(d.date); })
@@ -29,15 +33,24 @@ var svg = d3.select(".tipstricksWrapper")
 var lineSvg = svg.append("g");
 var focus = svg.append("g") 
     .style("display", "none");
+
 // Get the data
 d3.csv("/data/tipstricks2.csv", function(error, data) {
+    
     data.forEach(function(d) {
         d.date = parseDate(d.date);
         d.close = +d.close;
     });
+
+    // Test log for data
+    // for (i = 0; data.length > i; i++) {
+    //     console.log(data[i]);
+    // }
+
     // Scale the range of the data
     x.domain(d3.extent(data, function(d) { return d.date; }));
     y.domain([0, d3.max(data, function(d) { return d.close; })]);
+    // console.log(x.domain);
     // Add the valueline path.
     lineSvg.append("path")
         .attr("class", "line")
