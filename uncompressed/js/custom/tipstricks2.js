@@ -42,15 +42,10 @@ d3.csv("/data/tipstricks2.csv", function(error, data) {
         d.close = +d.close;
     });
 
-    // Test log for data
-    // for (i = 0; data.length > i; i++) {
-    //     console.log(data[i]);
-    // }
-
     // Scale the range of the data
     x.domain(d3.extent(data, function(d) { return d.date; }));
     y.domain([0, d3.max(data, function(d) { return d.close; })]);
-    // console.log(x.domain);
+    
     // Add the valueline path.
     lineSvg.append("path")
         .attr("class", "line")
